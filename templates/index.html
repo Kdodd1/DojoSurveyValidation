@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dojo Survey</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css.css') }}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+<h1>Dojo Survery!</h1>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p class="flashmessage">{{message}}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<form action="/result" method="post" class="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name" name="name">
+  </div>
+  <div class="form-group">
+    <label for="exampleSelect1">Dojo Location:</label>
+    <select class="form-control" id="exampleSelect1" name="location">
+      <option>San Jose</option>
+      <option>Tyson Corner</option>
+      <option>Seattle</option>
+      <option>L.A.</option>
+      <option>Iowa City</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleSelect1">Favorite Language:</label>
+    <select class="form-control" id="exampleSelect1" name="favorite">
+      <option>Python</option>
+      <option>Javascript</option>
+      <option>Java</option>
+      <option>C++</option>
+      <option>C#</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleTextarea">Comment: </label>
+    <textarea class="form-control" id="exampleTextarea" rows="3" name="comment">{{session["comment"]}}</textarea>
+  <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+</div>
+</body>
+</html>
